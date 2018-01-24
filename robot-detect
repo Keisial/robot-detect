@@ -173,6 +173,9 @@ else:
 # We only enable TCP fast open if the Linux proc interface exists
 enable_fastopen = os.path.exists("/proc/sys/net/ipv4/tcp_fastopen")
 
+if args.host.startswith('https://'):
+    args.host = args.host[8:].split('/', 1)[0]
+
 try:
     ip = socket.gethostbyname(args.host)
 except socket.gaierror as e:
